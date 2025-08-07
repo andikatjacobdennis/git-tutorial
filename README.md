@@ -1,7 +1,4 @@
 # **Git Workflow Mastery: A Hands-On Tutorial**  
-**Objective:** Demonstrate **branching, merging, rebasing, stashing, and undoing changes** in Git through practical examples.  
-
----
 
 ## **1. Repository Setup**  
 ### **1.1 Initialize & Commit**  
