@@ -15,7 +15,7 @@ git commit -m "Initial commit"   # Commit the file with a message
 ### **1.2 Connect to GitHub**
 
 ```bash
-git remote add origin https://github.com/andikatjacobdennis/git-practice.git  # Link local repo to GitHub
+git remote add origin https://github.com/your-name/git-practice.git  # Link local repo to GitHub
 git branch -M main              # Rename default branch to 'main'
 git push -u origin main         # Push code to GitHub and set upstream
 ```
