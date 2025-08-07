@@ -1,63 +1,69 @@
 ```mermaid
 graph TD
-    A[Start] --> B[Clone Repository]
-    B --> C[Create New Branch: git checkout -b feature-branch]
-    C --> D[Make Changes]
-    D --> E[Stage Changes: git add .]
-    E --> F[Commit Changes]
-    F --> G[Pull Latest Changes: git pull origin main]
-    G --> H{Merge Conflict?}
-    H -- Yes --> I[Resolve Conflicts]
-    I --> J[Commit Merge Resolution]
-    J --> K[Push Branch to Remote: git push origin feature-branch]
-    H -- No --> K
-    K --> L[Create Pull Request]
-    L --> M[Code Review]
-    M --> N{Approved?}
-    N -- No --> O[Address Feedback]
-    O --> F
-    N -- Yes --> P[Merge PR to Main]
-    P --> Q{New Release?}
-    Q -- Yes --> R[Tag Release: git tag -a v1.0.0]
-    R --> S[Push Tags: git push origin --tags]
-    S --> T[Deploy]
-    Q -- No --> Q_alt[End]
-    T --> U{Bug Reported?}
-    U -- Yes --> V[Checkout Main: git checkout main]
-    V --> W[Create Hotfix Branch: git checkout -b hotfix-branch]
-    W --> X[Fix Bug + Commit]
-    X --> Y[Push Hotfix Branch]
-    Y --> Z[Open PR: Merge to Main]
-    Z --> R_alt[End]
-    U -- No --> U_alt[End]
+    A[Start Development] --> B[Clone Repository: git clone URL]
+    B --> C[Create New Feature Branch: git checkout -b feature-name]
 
+    subgraph Feature Development
+        C --> D[Make Changes]
+        D --> E[Stage Changes: git add .]
+        E --> F[Commit Changes]
+        F --> G{More changes needed?}
+        G -- Yes --> D
+        G -- No --> H[Pull Latest Changes from Main: git pull origin main]
+    end
+
+    subgraph Integration and Review
+        H --> I{Merge Conflict?}
+        I -- Yes --> J[Resolve Conflicts + Commit]
+        J --> K[Push Branch to Remote: git push origin feature-name]
+        I -- No --> K
+        K --> L[Create Pull Request]
+        L --> M[Code Review]
+        M --> N{Approved?}
+        N -- No --> O[Make Revisions]
+        O --> D
+        N -- Yes --> P[Merge PR to Main]
+        P --> Q[Delete Feature Branch]
+    end
+
+    subgraph Release and Hotfix
+        Q --> R{Is there a release pipeline?}
+        R -- Yes --> S[CI/CD Triggered]
+        R -- No --> End
+        S --> T[Automated Tests]
+        T --> U{Tests Pass?}
+        U -- Yes --> V[Deploy to Staging]
+        U -- No --> W[Notify Team & Fix Bugs]
+        W --> D
+        V --> X{Staging Approved?}
+        X -- Yes --> Y[Deploy to Production]
+        X -- No --> W
+        Y --> Z{Bug Reported in Production?}
+        Z -- Yes --> AA[Checkout Main: git checkout main]
+        AA --> BB[Create Hotfix Branch: git checkout -b hotfix-bug-fix]
+        BB --> CC[Fix Bug + Commit]
+        CC --> DD[Push Hotfix Branch]
+        DD --> EE[Open Hotfix PR]
+        EE --> FF[Review & Merge to Main]
+        FF --> GG[Deploy Hotfix]
+        GG --> HH[Tag New Release]
+        HH --> II[Merge Hotfix to Develop/main for future releases]
+        II --> End
+        Z -- No --> End
+    end
+    
     style A fill:#dff,stroke:#333,stroke-width:2px
-    style B fill:#dff,stroke:#333,stroke-width:2px
-    style C fill:#dff,stroke:#333,stroke-width:2px
-    style D fill:#dff,stroke:#333,stroke-width:2px
-    style E fill:#dff,stroke:#333,stroke-width:2px
-    style F fill:#dff,stroke:#333,stroke-width:2px
-    style G fill:#dff,stroke:#333,stroke-width:2px
-    style H fill:#f9f,stroke:#333,stroke-width:2px
-    style I fill:#dff,stroke:#333,stroke-width:2px
-    style J fill:#dff,stroke:#333,stroke-width:2px
-    style K fill:#dff,stroke:#333,stroke-width:2px
-    style L fill:#dff,stroke:#333,stroke-width:2px
-    style M fill:#dff,stroke:#333,stroke-width:2px
-    style N fill:#f9f,stroke:#333,stroke-width:2px
-    style O fill:#dff,stroke:#333,stroke-width:2px
-    style P fill:#dff,stroke:#333,stroke-width:2px
-    style Q fill:#f9f,stroke:#333,stroke-width:2px
-    style R fill:#dff,stroke:#333,stroke-width:2px
-    style S fill:#dff,stroke:#333,stroke-width:2px
-    style T fill:#dff,stroke:#333,stroke-width:2px
-    style U fill:#f9f,stroke:#333,stroke-width:2px
-    style V fill:#dff,stroke:#333,stroke-width:2px
-    style W fill:#dff,stroke:#333,stroke-width:2px
-    style X fill:#dff,stroke:#333,stroke-width:2px
-    style Y fill:#dff,stroke:#333,stroke-width:2px
-    style Z fill:#dff,stroke:#333,stroke-width:2px
-    style Q_alt fill:#eee,stroke:#333,stroke-width:2px
-    style R_alt fill:#eee,stroke:#333,stroke-width:2px
-    style U_alt fill:#eee,stroke:#333,stroke-width:2px
+    style S fill:#bbf,stroke:#333,stroke-width:2px
+    style T fill:#bbf,stroke:#333,stroke-width:2px
+    style V fill:#bbf,stroke:#333,stroke-width:2px
+    style Y fill:#bbf,stroke:#333,stroke-width:2px
+    style GG fill:#bbf,stroke:#333,stroke-width:2px
+    style HH fill:#fbf,stroke:#333,stroke-width:2px
+    style J fill:#fdd,stroke:#333,stroke-width:2px
+    style O fill:#fdd,stroke:#333,stroke-width:2px
+    style W fill:#fdd,stroke:#333,stroke-width:2px
+    style CC fill:#fdd,stroke:#333,stroke-width:2px
+    style II fill:#fdd,stroke:#333,stroke-width:2px
+    style H fill:#dff,stroke:#333,stroke-width:2px
+    style End fill:#eee,stroke:#333,stroke-width:2px
 ```
