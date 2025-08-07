@@ -141,12 +141,11 @@ git push -u origin feature/dashboard  # Push new branch and track it with upstre
 
 ---
 
-## **Best Practices for Teams**
-
-✔ **Branch Naming:** Use `feature/`, `bugfix/`, or `hotfix/` prefixes for clarity.
-✔ **Atomic Commits:** Keep each commit focused on one logical change.
-✔ **Rebase Before PRs:** Squash/fix messy history before pull requests.
-✔ **Stash Often:** Avoid committing incomplete or experimental work.
+## **Best Practices for Teams**  
+✔ **Branch Naming:** Use feature/, bugfix/, or hotfix/ prefixes.  
+✔ **Atomic Commits:** One logical change per commit.  
+✔ **Rebase Before PRs:** Keep history clean before merging.  
+✔ **Stash Often:** Avoid half-baked commits.  
 
 ---
 
