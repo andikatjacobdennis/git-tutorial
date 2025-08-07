@@ -1,7 +1,4 @@
 # **Practical Git Workflow for C# Developers**  
-*A complete, hands-on tutorial with real C# examples and common team scenarios*
-
----
 
 ## **1. Project Setup & First Commit**
 ### **Situation:** Starting a new C# console application for a banking system.
