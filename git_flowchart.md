@@ -1,3 +1,4 @@
+```mermaid
 flowchart TD
     A[Start] --> B[Clone Repository]
     B --> C[Create New Branch]
@@ -33,3 +34,4 @@ flowchart TD
     style T fill:#bbf,stroke:#333,stroke-width:2px
     style R fill:#fbf,stroke:#333,stroke-width:2px
     style Z fill:#fdd,stroke:#333,stroke-width:2px
+```
